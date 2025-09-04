@@ -2,7 +2,8 @@ import { NgForm } from '@angular/forms';
 import { Order } from './../model/order.model';
 import { OrderRepository } from './../model/order.repository';
 import { Component } from '@angular/core';
-// import { FormGroup,FormControl } from '@angular/forms';
+
+// import { FormGroup,FormControl,Validators } from '@angular/forms';
 
 @Component({
   selector: 'checkout',
@@ -10,23 +11,26 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class CheckOut {
-  orderSent: boolean = false;
+  orderSent: boolean = false; // true
   submitted: boolean = false;
 
   constructor(private repository: OrderRepository, public order: Order) {
     // order = cart service data + form data
   }
 
-  submitOrder() {
-    // post localhost:3500/orders , order
+  submitOrder(form: NgForm) {
+    this.submitted = true;
 
-    this.repository
-      .saveOrder(this.order)
+    if (form.valid) {
+      //
+      this.repository
+        .saveOrder(this.order)
 
-      .subscribe((order) => {
-        this.order.clear();
-        this.orderSent = true;
-        this.submitted = false;
-      });
+        .subscribe((order) => {
+          this.order.clear();
+          this.orderSent = true;
+          this.submitted = false;
+        });
+    }
   }
 }
