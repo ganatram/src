@@ -1,3 +1,4 @@
+import { Order } from './order.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,6 +19,11 @@ export class RestDataSource {
   getProducts(): Observable<Product[]> {
     // publish...
     return this.http.get<Product[]>(this.baseUrl + 'products'); // HttpClient -- returns an Observable -- state change
+  }
+
+  saveOrder(order: Order): Observable<Order> {
+    // publish...
+    return this.http.post<Order>(this.baseUrl + 'orders', order);
   }
 }
 

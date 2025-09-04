@@ -9,7 +9,7 @@ export class OrderRepository {
 
   constructor(private dataSource: RestDataSource) {}
 
-  /*   saveOrder(order: Order) {
+  saveOrder(order: Order) {
     return this.dataSource.saveOrder(order);
-  } */
+  }
 }
