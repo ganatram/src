@@ -25,6 +25,22 @@ export class RestDataSource {
     // publish...
     return this.http.post<Order>(this.baseUrl + 'orders', order);
   }
+
+  saveProduct(product: Product): Observable<Product> {
+    // publish
+    return this.http.post<Product>(this.baseUrl + 'products', product); // state change
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(
+      `${this.baseUrl}products/${product.id}`,
+      product
+    );
+  }
+
+  deleteProduct(id?: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.baseUrl}products/${id}`);
+  }
 }
 
 // Angular Network/AJAX calls are optional !

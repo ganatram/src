@@ -27,8 +27,40 @@ export class ProductRepository {
     );
   }
 
+  getProduct(id: number) {
+    return this.products.find((p) => p.id == id);
+  }
+
   getCategories(): any[] {
     // auto fire
     return this.categories;
+  }
+
+  deleteProduct(id?: number) {
+    this.datasource
+      .deleteProduct(id)
+
+      .subscribe((p: any) => {
+        this.products.splice(
+          this.products.findIndex((p) => p.id == id),
+          1
+        );
+      });
+  }
+
+  saveProduct(product: Product) {
+    if (product.id == null || product.id == 0) {
+      this.datasource
+        .saveProduct(product)
+        .subscribe((p) => this.products.push(p));
+    } else {
+      this.datasource.updateProduct(product).subscribe((p) => {
+        this.products.splice(
+          this.products.findIndex((p) => p.id == product.id),
+          1,
+          product
+        );
+      });
+    }
   }
 }

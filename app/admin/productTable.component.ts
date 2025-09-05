@@ -13,4 +13,8 @@ export class ProductTableComponent {
   getProducts(): Product[] {
     return this.repository.getProducts();
   }
+
+  deleteProduct(id?: number) {
+    this.repository.deleteProduct(id);
+  }
 }

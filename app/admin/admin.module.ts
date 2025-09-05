@@ -17,7 +17,11 @@ let routing = RouterModule.forChild([
         component: ProductTableComponent,
       },
       {
-        path: 'productsEdit',
+        path: 'products/:mode/:id', // mode='edit'   & id=1;     -- route params
+        component: ProductEditorComponent,
+      },
+      {
+        path: 'products/:mode', //    mode='create'
         component: ProductEditorComponent,
       },
       {
