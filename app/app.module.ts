@@ -37,8 +37,16 @@ import { RouterModule } from '@angular/router';
       },
 
       {
+        path: 'admin', // tracks /subscribe's to the BrowserURL state -- localhost:3001/admin
+        loadChildren: () =>
+          // lazy load an angular module - load it on demand
+          import('./admin/admin.module').then((m) => m.AdminModule),
+        // component: AdminComponent   (default component)
+      },
+
+      {
         path: '**', // default path
-        redirectTo: '/store', // state change in the BrowserURL - HashBang
+        redirectTo: '/store', // state change in the BrowserURL -  // default hashbang
       },
     ]),
   ],

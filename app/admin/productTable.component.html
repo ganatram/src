@@ -1,0 +1,28 @@
+<!-- <div>place holder for product table.</div> -->
+
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of getProducts()">
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.category }}</td>
+      <td>{{ p.price | currency : "USD" : "symbol" : "2.2-2" }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning">Edit</button>
+
+        <button class="btn btn-sm btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary">Create New Product</button>
